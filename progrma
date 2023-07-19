@@ -1,4 +1,65 @@
 @model IEnumerable<Product>
 <ul>
-@foreach (Product)
-</ul>
+@foreach (Product p in Model)
+ {
+    <li>@p.name</li>
+ }
+ 
+ </ul>
+
+ <p>
+Thaaaaaaaaaaaaaaaaaa
+Please aaaaaaaaaaaaa 
+
+
+<a asp-controller="Acocunt" asp-action="Login">
+clic
+</a>
+ </p>
+
+ <environment names="Development">
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+ </environment>
+
+
+ <environment names="Staging,Production">
+
+ <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.js"
+
+
+            asp-fallback-src="~/lib/jquery/dist/jquery.js"
+
+            asp-fallback-test="window.jQuery">
+            </script>
+
+        </environment>
+
+
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment()) 
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.useRouting();
+
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: {controller=Home}/{action=Index}/{id?}");
+
+
+app.Run();
