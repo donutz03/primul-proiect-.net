@@ -63,3 +63,80 @@ app.MapControllerRoute(
 
 
 app.Run();
+
+
+
+public class ProductsController : Controller
+{
+    public IActionResult Details(int id)
+    {
+        return ControllerContext.MyDisplayRouteInfo(id);
+    }
+}
+
+public class HomeController : Controller
+{
+    public IActionResult Index() { ... }
+}
+
+app.MapDefaultControllerRoute();
+
+app.MapControllerRoute(name: "blog",
+                    pattern: "blog/{*article}
+                    defaults: new { controller="Blog", action="Article"}
+                    )
+
+    app.MapControllerRoute(name:"default",
+    pattern:"{controller=Home}/{action=Index}/{id?}");
+
+
+
+    public class Products33Controller : Controller
+    {
+        public IActionResult Edit(int id)
+        {
+            return ControllerContext.MyDisplayRouteInfo(id);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, Product product)
+        {
+            return ControllerContext.MyDisplayRouteInfo(id, product.name);
+        }
+    }
+
+    var builder = WebApplication.CreateBuilder(args);
+    builder.Services.AddControllers();
+
+    var app = builder.Build();
+
+    app.UseHttpsRedirection();
+
+    app.UseAuthorization();
+
+    app.MapControllers();
+
+    app.Run();
+
+
+    public class HomeController : Controller
+    {
+        [Route("")]
+        [Route(
+            "Home"
+        )]
+        [Route("Home/Index")]
+        [Route("Home/Index/{id?}")]
+
+        public IActionResult Index(int? id) 
+        {
+            return ControllerContext.MyDisplayRouteInfo(id);
+        }
+
+        [Route("Home/About")]
+        [Route("Home/About/{id?})]
+        public IActionResult About(int? id)
+        {
+            return ControllerCOntext.MyDisplayRouteInfo(id);
+        }
+    }
