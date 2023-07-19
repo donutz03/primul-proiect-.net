@@ -141,4 +141,18 @@ app.MapControllerRoute(name: "blog",
         }
     }
 
-   
+   [Route("api/[controller]")]
+   [ApiController]
+   public class Test2Controller : ControllerBase
+   {
+    [HttpGet] // GET /api/test2
+    public IActionResult ListProducts() {
+        return ControllerContext.MyDisplayRouteInfo();
+    }
+
+    [HttpGet("{id}")] // GET /api/test2/xyz
+    public IActionResult GetProduct(string id)
+    {
+        return ControllerContext.MyDisplayRouteInfo(id);
+    }
+   }
