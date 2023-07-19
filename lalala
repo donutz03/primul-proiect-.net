@@ -73,3 +73,54 @@ public class IndexModel : PageModel {
 
 </b> @HttpContext.Session.GetInt32("_Age").ToString()</p>
 </div>
+
+
+public static class SessionExtensions
+{
+    public static void Set<T>(this Isession session, string key, T value) 
+    {
+        session.SetString(key, JsonSerializer.Serialize(value));
+    }
+
+    public static T? Get<T>(this Isession session, string key)
+    {
+        var value = serssion.GetString(key);
+        return value == null ? default : JsonSerializer.Deserialize<T>(value);
+    }
+}
+
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Web.Extensions;
+
+namespace SessionSample.Pages
+{
+    public class Index6Model : PageModel
+    {
+        const string SessionKeyTime = "_Time";
+        public string? SessionInfo_SessionTime {get; private set;}
+        private readonly ILogger<Index6Model> _logger;
+        
+        public Index6Model(ILogger<Index6Model> logger)
+        {
+            _logger = logger;
+        }
+
+
+        public void OnGet()
+        {
+            var currentTime = DateTime.Now;
+
+            // rsdsds
+            if (HttpContext.Session.Get<DateTime>(SessionKeyTime) == default)
+            {
+                HttpContext.Session.Set<DateTime>(SessionKeyTime, currentTime);
+            }
+
+            _logger.LogInformation("Current Time: {Time}", currentTime);
+            _logger.LogInformation("Session Time: {Time}",
+                        HttpContext.Session.Get<DateTime>(SessionKeyTime)
+            );
+        }
+        
+            }
+}
