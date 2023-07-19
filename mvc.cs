@@ -37,13 +37,24 @@ public class LoginViewModel {
 
 
 
-@inject SomeService ServiceName
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>@ServiceName.GetTitle</title>
-</head>
-    <body>
-        <h1>@ServiceName.GetTitle</h1>
-    </body>
-</html>
+// @inject SomeService ServiceName
+// <!DOCTYPE html>
+// <html lang="en">
+// <head>
+//     <title>@ServiceName.GetTitle</title>
+// </head>
+//     <body>
+//         <h1>@ServiceName.GetTitle</h1>
+//     </body>
+// </html>
+
+[Authorize]
+public class AccountController : Controller
+
+<ul>
+@for(int i=0;if<5;i++)
+{
+    <li>List item @i</li>
+}
+</ul>
+
