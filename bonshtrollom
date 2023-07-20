@@ -1,0 +1,90 @@
+[ApiController]
+[Route("[controller]")]
+public class WeatherForecastController : ControllerBase
+{
+
+}
+
+[HttpPost]
+[ProducesResponseType(StatusCodes.Status201Created)]
+[ProdusesResponseType(StatusCodes.Status400BadRequest)]
+public ActionResult<Pet> Create(Pet pet) {
+    pet.Id = _petsInMemoryStore.Any() ?
+             _petsInMemoryStore.Max(p => p.Id) + 1 : 1;
+    _petsInMemoryStore.Add(pet);
+
+    return CreatedAtAction(nameof(GetById), new {id=pet.id}, pet);
+}
+
+
+
+[Produces(MediaTypeNames.Application.Json)]
+[Route("[controller]")]
+public class PetsController : MyControllerBase
+
+using Microsoft.AspNetCore.Mvc;
+[assembly: ApiController]
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+
+var app = builder.Build();
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
+
+
+if (!ModelState.isValid) 
+{
+    return BadRequest(ModelState);
+}
+
+//JSON
+{
+    "type": "https:''tools.ietf.org/html/rfc7231#section-6.5.1",
+    "title": "One or more validation errors occurred",
+    "status": 400,
+    "traceId": "|7fb5e16a-4c8f23bbfc974667",
+    "errors": {
+        "": [
+            "A non-empty request body is required."
+        ]
+    }
+}
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers()
+    .ConfigureApiBehaviorOptions(options =>
+    {
+        // To preserve the default hbeh.............
+        var builtInFactory = options.InvalidModelStateResponseFactory;
+
+        options.InvalidModelStateResponseFactory = context =>
+        {
+            var logger = context.HttpContext.RequestServices
+                                .GetRequiredService<ILogger<Program>>();
+                            //////
+                            //
+                            //
+                            //
+                            //
+                            return builtInFactory(context);
+        };
+    });
+    
+
+    var app = builder.Build();
+    app.UseHttpsRedirection();
+    app.UseAuthorization();
+    app.MapControllers();
+    app.Run();
+
+
+
+    
