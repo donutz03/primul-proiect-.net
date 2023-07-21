@@ -134,4 +134,35 @@ namespace RazorPagesContacts.Data
     <input type="submit" />
 </form>
 
-//The Pages/Customers/Create.cshtml.cs page model
+//The Pages/Customers/Create.cshtml.cs page models
+
+public class CreateModel : PageModel {
+    private readonly Data.CustomerDbContext _context;
+
+    public CreateModel(Data.CustomerDbContext context)
+    {
+        _context = context;
+    }
+
+    public IActionResult OnGet() 
+    {
+        return Page();
+    }
+
+    [BindProperty]
+    public Customer? Customer {get; set;}
+
+    public async Task<IactionResult> OnPostAsync()
+    {
+        if (!ModelState.IsValid)
+        {
+            return Page();
+        }
+
+        if (Customer != null) _context.Customer.Add(Customer);
+        await _context.SaveChangesAsync();
+
+        return RedirectToPage("./Index");
+    }
+}
+
