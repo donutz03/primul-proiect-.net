@@ -8,3 +8,23 @@ android
 dotnet new android --output MyAndroidApp --packageName com.mycompany.myandroidapp
 dotnet new androidlib --output MyAndroidLibrary
 dotnet new android-bindinglib --output MyJavaBinding
+
+add items to proj:
+dotnet new android-activity --name LoginActivity --namespace MyAndroidApp
+dotnet new android-layout --name MyLayout --output Resources/layout
+
+dotnet build
+Resource.designer.cs
+@(AndroidResource)
+AndroidManifest.xml
+javac
+.dex
+.apk .aab
+
+dotnet publish ->google play
+
+dotnet run
+
+dotnet run --project HelloAndroid.csproj
+
+dotnet build HelloAndroid.csproj -t:Run
