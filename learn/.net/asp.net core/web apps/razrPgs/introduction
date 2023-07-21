@@ -122,3 +122,16 @@ namespace RazorPagesContacts.Data
 }
 
 //The Pages/Customers/Create.cshtml view file:
+@page
+@model RazorPagesContacts.Pages.Customers.CreateModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<p>Enter a customer name:</p>
+
+<form method="post">
+    Name:
+    <input asp-for="Customer!.Name" />
+    <input type="submit" />
+</form>
+
+//The Pages/Customers/Create.cshtml.cs page model
