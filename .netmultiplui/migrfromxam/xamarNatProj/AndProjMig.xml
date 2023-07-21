@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net7.0-android</TargetFramework>
+        <OutputType>Exe</OutputType>
+    </PropertyGroup>
+</Project>
+
+//dnt
+<PropertyGroup>
+    <!-- Us in Xam.And prs -->
+    <AndroidSupportedAbis>armeabi-v7a;arm64-v8a;x86;x86_64</AndroidSupportedAbis>
+</PropertyGroup>
+
+//do
+<PropertyGroup>
+    <!-- Usd n .NT An prs -->
+    <RuntimeIdentifiers>android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers>
+</PropertyGroup>
