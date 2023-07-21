@@ -1,0 +1,10 @@
+dotnet new:
+android-activity
+android-bindinglib
+android-layout
+androidlib
+android 
+
+dotnet new android --output MyAndroidApp --packageName com.mycompany.myandroidapp
+dotnet new androidlib --output MyAndroidLibrary
+dotnet new android-bindinglib --output MyJavaBinding

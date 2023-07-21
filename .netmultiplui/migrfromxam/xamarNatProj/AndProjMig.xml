@@ -16,3 +16,36 @@
     <!-- Usd n .NT An prs -->
     <RuntimeIdentifiers>android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers>
 </PropertyGroup>
+
+$(AndroidUseIntermediateDesignerFile) True byDef
+$(AndroidBoundExceptionType) System byDef
+$(AndroidClassParser) class-parse byDef; jar2xml notSupprtd
+$(AndroidDexTool) d8 byDef; dx notSupprtd
+$(AndroidManifest) AndroidManifest.xnm byDef; Properties\AssemblyInfo.cs nlnger used;
+Properties\AndroidManifest.xml will also be detected and used if it exists to ease migration
+$(DebugType) portable byDef; full and pdbonly notSupprtd
+$(MonoSymbolArchive) False bcz mono-symbolicate notSupportd
+
+if jv enbld @(InputJar), @(EmbeddedJar) or @(LibraryProjectZip)
+then $(AllowUnsafeBlocks) prprty def to True;
+
+<PublishTrimmed>true</PublishTrimmed>
+<TrimMode>link</TrimMode> enbls member-lvl trimming
+def:
+PublishTrimmed=true
+TrimMode=link
+TrimMode=copyused is def in .NET SDK, but not appropr for mobile apps
+
+$(RunAOTCompilation)
+$(AotAssemblies) -> deprecated
+
+<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <RunAOTCompilation>true</RunAOTCompilation>
+    <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
+</PropetyGroup>
+
+//to disable aot:
+<PropertyGroup Condition="'$(Configuration) == 'Release'">
+    <RunAOTCompilation>false</RunAOTCompilation>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+</PropertyGroup>
