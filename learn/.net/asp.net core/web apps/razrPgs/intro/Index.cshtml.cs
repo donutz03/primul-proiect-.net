@@ -27,3 +27,18 @@ private class IndexModel : PageModel
     }
 
 }
+
+public async Task<IActionResult> onPostDeleteAsync(int id) {
+    var contact = await _context.Customer.FindAsync(id);
+
+    if (contact != null)
+    {
+        _context.Customer.Remove(contact);
+        await _context.SaveChangesAsync();
+
+
+    }
+
+    return RedirectToPage();
+}
+
