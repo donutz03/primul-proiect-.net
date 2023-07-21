@@ -86,3 +86,39 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 app.Run();
+
+//the data model:
+
+using System.ComponentModel.DataAnnotations;
+
+namespace RazorPagesContacts.Models
+{
+    public class CustomerDbContext
+    {
+        public int Id {
+            get; set;
+        }
+
+        [Required, StringLength(10)]
+        public string? Name {get; set;}
+    }
+}
+
+// The db context:
+using Microsoft.EntityFrameworkCore;
+
+namespace RazorPagesContacts.Data 
+{
+    public class CustomerDbContext : DbContext
+    {
+        public Customer DbContext (DbContextOptions<CustomerDbCOntext> options)
+            :base(options)
+            {
+
+            }
+
+            public DbSet<RazorPagesCotnacts.Models.Customer> Customer => Set<RazorPagesContacts.Models.Customer>();
+    }
+}
+
+//The Pages/Customers/Create.cshtml view file:
