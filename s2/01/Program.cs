@@ -96,53 +96,110 @@ namespace ExempluString
         //}
 
 
-        private static void StringBuilderPerformance()
+        //private static void StringBuilderPerformance()
+        //{
+        //    Console.WriteLine("###StringBuilderPerformance");
+
+
+        //    const int noOfRepetitions = 50000;
+
+        //    var regularString = string.Empty;
+
+        //    var watch = Stopwatch.StartNew();
+        //    for (var i = 0; i < noOfRepetitions; i++)
+        //    {
+        //        regularString += "a";
+        //    }
+
+        //    watch.Stop();
+        //    var elapsedMs = watch.ElapsedMilliseconds;
+
+        //    Console.WriteLine("Using System.String: {0}ms", elapsedMs);
+
+        //    var stringBuilder = new StringBuilder();
+
+        //    watch = Stopwatch.StartNew();
+
+        //    for (var i = 0; i < noOfRepetitions; i++)
+        //    {
+        //        stringBuilder.Append("a");
+        //    }
+
+        //    regularString = stringBuilder.ToString();
+        //    watch.Stop();
+        //    elapsedMs = watch.ElapsedMilliseconds;
+
+        //    Console.WriteLine("Using System.Text.StringBuilder: {0}ms", elapsedMs);
+
+        //    Console.ReadLine();
+
+
+
+
+
+        //}
+
+
+
+        private static void Main(string[] args)
         {
-            Console.WriteLine("###StringBuilderPerformance");
+            //StringBuilderPerformance();
+            //Arrayz();
+            RectangularArray();
+        }
 
+        public static void Arrayz()
+        {
+            int[] intArray;
 
-            const int noOfRepetitions = 50000;
+            intArray = new int[3];
 
-            var regularString = string.Empty;
+            var doubleArray = new[] { 34.23, 10.2, 23.2 };
 
-            var watch = Stopwatch.StartNew();
-            for (var i = 0; i < noOfRepetitions; i++)
-            {
-                regularString += "a";
-            }
+            var arrayElement = doubleArray[0];
+            doubleArray[1] = 5.55;
 
-            watch.Stop();
-            var elapsedMs = watch.ElapsedMilliseconds;
+            for (var i = 0; i < intArray.Length; i++)
+                Console.WriteLine(intArray[i]);
 
-            Console.WriteLine("Using System.String: {0}ms", elapsedMs);
+            foreach (var value in doubleArray)
+                Console.WriteLine(value);
 
-            var stringBuilder = new StringBuilder();
+            Array.Sort(doubleArray);
 
-            watch = Stopwatch.StartNew();
-
-            for (var i = 0; i < noOfRepetitions; i++)
-            {
-                stringBuilder.Append("a");
-            }
-
-            regularString = stringBuilder.ToString();
-            watch.Stop();
-            elapsedMs = watch.ElapsedMilliseconds;
-
-            Console.WriteLine("Using System.Text.StringBuilder: {0}ms", elapsedMs);
-
-            Console.ReadLine();
-
-            
-
-
+            for (var i = 0; i < doubleArray.Length; i++)
+                Console.WriteLine("doubleArray[{0}]={1}", i, doubleArray[i]);
 
         }
 
-        private static void Main(string[] args )
+        private static void RectangularArray()
         {
-            StringBuilderPerformance();
+            var cub = new int[5, 2, 7];
+
+            var matrix = new[,] {
+                                {4, 23, 5, 2},
+                                { 1, 6, 13, 29}
+                                };
+
+
+            for (var i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (var j = 0; j < matrix.GetLength(1); j++)
+                    Console.Write(" {0}", matrix[i, j]);
+                Console.WriteLine();
+            }
         }
+
+        private void JaggedArray()
+        {
+            int[][] jaggedArray =
+            {
+                new int[] {0, 1, 2},
+                new int[] {3, 4},
+                new int[] {6, 7 ,8 , 9}
+            };
+        }
+        
 
     }
 }
